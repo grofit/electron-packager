@@ -149,7 +149,9 @@ function createSeries (opts, archs, platforms) {
 module.exports = function packager (opts, cb) {
   var archs = validateList(opts.all ? 'all' : opts.arch, supportedArchs, 'arch')
   var platforms = validateList(opts.all ? 'all' : opts.platform, supportedPlatforms, 'platform')
-  if (!opts.version) return cb(new Error('Must specify version'))
+  if (!opts.dir) return cb(new Error('Must specify directory in options i.e. { dir: "your/directory" }'))
+  if (!opts.name) return cb(new Error('Must specify name in options i.e. { name: "myapp" }'))
+  if (!opts.version) return cb(new Error('Must specify electron version in options i.e. { version: "0.30.0" }'))
   if (!Array.isArray(archs)) return cb(new Error(archs))
   if (!Array.isArray(platforms)) return cb(new Error(platforms))
 
